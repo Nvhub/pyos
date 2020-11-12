@@ -1,0 +1,58 @@
+{% extends 'admin-panel\public\base.html' %}
+
+
+{% block title %} دسته بندی ها {% endblock %}
+{% block main %}
+    <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                  <div class="card-title">
+                      <a href="{% url 'admin-panel:article-create' %}"><button class="btn btn-sm btn-primary"> ایجاد پست جدید </button></a>
+                  </div>
+                  <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th class="text-center">کد</th>
+                      <th class="text-center">تیتر</th>
+                      <th class="text-center">وضعیت</th>
+                      <th class="text-center">نویسنده</th>
+                      <th class="text-center">دسته بندی</th>
+                      <th class="text-center">تنظیمات</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for article in articles %}
+                  <tr>
+                      <td class="text-center">{{ article.id }}</td>
+                      <td class="text-center">{{ article.title }}</td>
+                      <td class="text-center">{% if article.status == 'e' %} <span class="btn btn-sm btn-success"> منتشر </span> {% else %} <span class="btn btn-danger btn-sm"> پیش نویس </span> {% endif %}</td>
+                      <td class="text-center">{{ article.user_id }}</td>
+                      <td class="text-center">{{ article.cat }}</td>
+                      <td class="text-center">
+                          <a href="{% url 'admin-panel:article-delete' article.id %}"><span class="btn btn-outline-danger btn-sm">حذف</span></a>
+                          <a href="{% url 'admin-panel:article-update' article.id %}"><span class="btn btn-sm btn-outline-primary">ویرایش</span></a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+
+{% endblock %}

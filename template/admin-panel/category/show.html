@@ -1,0 +1,27 @@
+{% extends 'admin-panel\public\base.html' %}
+
+{% block main %}
+    {% for category in category %}
+        <h1># : {{ category.id }}</h1>
+        <hr>
+        <h1>category : {{ category.name }}</h1>
+        <hr>
+        <h1>status :
+        {% if category.status == 'e' %}
+            Enable
+        {% else %}
+            Disable
+        {% endif %}
+        </h1>
+        <hr>
+        <h1>create : {{ category.created_at }}</h1>
+        <hr>
+        <h1>update :
+            {% if category.updated_at == category.created_at %}
+                No Updated
+            {% else %}
+                {{ category.updated_at }}
+            {% endif %}
+        </h1>
+    {% endfor %}
+{% endblock %}

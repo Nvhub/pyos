@@ -1,0 +1,30 @@
+{% extends 'admin-panel\public\base.html' %}
+
+{% block main %}
+    <h1># : {{ comment.id }}</h1>
+    <hr>
+    <h1>Text : {{ comment.text }}</h1>
+    <hr>
+    <h1>status :{% if comment.status == 'e' %}
+        Enable
+    {% else %}
+        Disable
+    {% endif %}
+    </h1>
+    <hr>
+    <h1>User : {{ comment.user_name }} </h1>
+    <hr>
+    <h1>Article : {{ comment.article }}</h1>
+    <hr>
+    <h1>create : {{ comment.created_at }}</h1>
+    <hr>
+    <h1>update :
+        {% if comment.updated_at == comment.created_at %}
+            No Updated
+        {% else %}
+            {{ comment.updated_at }}
+        {% endif %}
+    </h1>
+
+
+{% endblock %}
