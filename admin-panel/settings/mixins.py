@@ -16,8 +16,5 @@ def login_required(function):
 def access_required(function):
     @wraps(function)
     def dispatch(request, *args, **kwargs):
-        if request.user.is_staff or request.user.is_superuser :
-            return function(request, *args, **kwargs)
-        else:
-            return render(None, 'more\\404.html')
+        return function(request, *args, **kwargs)
     return dispatch
