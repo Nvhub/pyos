@@ -20,6 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
+import os.path
+PROJECT_DIR = os.path.dirname(__file__) # this is not Django setting.
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_DIR, "templates"),
+    # here you can add another templates directory if you wish.
+)
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'o4)a3q3peyls5ho$@uxv01k=d7#x2-mu-v9=n_lspq^yf1%x%$'
 
